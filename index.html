@@ -13,12 +13,8 @@
   --border:rgba(28,25,23,0.1);--fh:'Playfair Display',Georgia,serif;--fb:'Plus Jakarta Sans',sans-serif;
 }
 html{scroll-behavior:smooth;}
-body{background:var(--cream);color:var(--ink);font-family:var(--fb);font-weight:300;overflow-x:hidden;cursor:none;}
+body{background:var(--cream);color:var(--ink);font-family:var(--fb);font-weight:300;overflow-x:hidden;}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9990;opacity:.5;}
-
-/* CURSOR */
-.cur{position:fixed;width:12px;height:12px;background:var(--fire);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s;mix-blend-mode:multiply;}
-.cur-ring{position:fixed;width:44px;height:44px;border:1.5px solid rgba(255,77,28,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
 
 /* LOADER */
 #loader{position:fixed;inset:0;background:var(--ink);z-index:9995;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;}
@@ -334,9 +330,6 @@ footer{background:var(--ink);padding:52px 64px;display:grid;grid-template-column
 </style>
 </head>
 <body>
-<div class="cur" id="cur"></div>
-<div class="cur-ring" id="curRing"></div>
-
 <!-- LOADER -->
 <div id="loader">
   <div class="ld-logo">Kryva<em>Tech</em></div>
@@ -661,16 +654,6 @@ window.addEventListener('load',()=>{
     l.style.opacity='0';l.style.transform='translateY(-20px)';
     setTimeout(()=>l.style.display='none',700);
   },1600);
-});
-
-// CURSOR
-const cur=document.getElementById('cur'),ring=document.getElementById('curRing');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-(function ar(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ar);})();
-document.querySelectorAll('a,button,.tcard,.tstcard,.phil-card,.skill-row,.ct-card').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cur.style.width='20px';cur.style.height='20px';ring.style.width='64px';ring.style.height='64px';});
-  el.addEventListener('mouseleave',()=>{cur.style.width='12px';cur.style.height='12px';ring.style.width='44px';ring.style.height='44px';});
 });
 
 // NAV
